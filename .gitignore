@@ -1,0 +1,4 @@
+*.swo
+*.swp
+*.pyc
+database/stplots.db
