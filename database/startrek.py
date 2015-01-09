@@ -68,8 +68,6 @@ class Plot(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String)
 
-Base.metadata.create_all(engine)
-
 
 def main():
     if len(sys.argv) < 4:
@@ -88,6 +86,8 @@ def main():
     except IOError as e:
         print >>sys.stderr, "error: %s" % (e)
         return 1
+
+    Base.metadata.create_all(engine)
 
     session = DBSession()
 
