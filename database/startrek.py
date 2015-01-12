@@ -54,6 +54,9 @@ class Episode(Base):
     plot = relationship("Plot", secondary=episode_plots, backref="plots")
     url = Column(String)
 
+    def __repr__(self):
+        return (u"Episode('%s')" % (self.title)).encode("utf-8")
+
 
 class Person(Base):
     __tablename__ = "people"
@@ -61,12 +64,18 @@ class Person(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String)
 
+    def __repr__(self):
+        return (u"Person('%s')" % (self.name)).encode("utf-8")
+
 
 class Plot(Base):
     __tablename__ = "plots"
 
     id = Column(Integer, primary_key=True)
     name = Column(String)
+
+    def __repr__(self):
+        return (u"Plot('%s')" % (self.name)).encode("utf-8")
 
 
 def main():
