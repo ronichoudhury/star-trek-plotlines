@@ -133,7 +133,7 @@ def main():
         director = map(lambda writer: people_rec[int(writer)], director.split(","))
         plot = map(lambda plot: plots_rec[int(plot)], filter(None, plot.split(",")))
 
-        ep = Episode(id=int(i), season=season, episode=ep, airdate=airdate, teleplay=teleplay, story=story, director=director, plot=plot, url=url)
+        ep = Episode(id=int(i), season=season, episode=ep, title=title.decode("utf-8"), airdate=airdate, stardate=stardate, teleplay=teleplay, story=story, director=director, plot=plot, url=url)
         session.add(ep)
 
     session.commit()
