@@ -1,0 +1,46 @@
+{
+  "name": "scatterplot",
+  "width": 400,
+  "height": 400,
+  "data": [
+    {
+      "name": "air/star dates",
+      "url": "air-stardates.json"
+    }
+  ],
+  "scales": [
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "domain": {"data": "air/star dates", "field": "data.y"}
+    },
+    {
+      "name": "x",
+      "type": "time",
+      "range": "width",
+      "round": true,
+      "nice": "year",
+      "domain": {"data": "air/star dates", "field": ["data.x"]}
+    }
+  ],
+  "axes": [
+    {"type": "x", "scale": "x"}
+    {"type": "y", "scale": "y"}
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {"data": "air/star dates"},
+      "properties": {
+        "enter": {
+          "x": {"scale": "x", "field": "data.x"},
+          "y": {"scale": "y", "field": "data.y"},
+          "radius": {"value": 5},
+          "stroke": {"value": "black"}
+          "fill": {"value": "steelblue"}
+        }
+      }
+    }
+  ]
+}
