@@ -5,7 +5,7 @@ from startrek import DBSession
 from startrek import Episode
 
 
-def scatterplot(x_field, y_field, x_type=None, y_type=None):
+def scatterplot(*fields):
     def get_type_converter(field):
         if field == "airdate":
             return lambda airdate: (airdate - datetime.date.fromtimestamp(0)).total_seconds() * 1000.0
@@ -26,25 +26,19 @@ def scatterplot(x_field, y_field, x_type=None, y_type=None):
     if eps.count() > 0:
         ep = eps[0]
 
-        if x_field not in ep.__dict__:
-            tangelo.http_status(400, "Bad field name")
-            return {"error": "Bad field name: %s" % (x_field)}
+        for f in fields:
+            if f not in ep.__dict__:
+                tangelo.http_status(400, "Bad field name")
+                return {"error": "Bad field name: %s" % (f)}
 
-        if y_field not in ep.__dict__:
-            tangelo.http_status(400, "Bad field name")
-            return {"error": "Bad field name: %s" % (y_field)}
+        eps = [{f: get_type_converter(f)(r.__dict__[f]) for f in fields} for r in eps]
 
-        x_type = get_type_converter(x_field)
-        y_type = get_type_converter(y_field)
-
-        eps = [{"x": x_type(r.__dict__[x_field]), "y": y_type(r.__dict__[y_field])} for r in eps]
-
-    return eps
+    return filter(lambda r: all(r[f] is not None for f in fields), eps)
 
 
 def run(plot_type, **query):
     if plot_type == "scatter":
-        return scatterplot(query.get("x"), query.get("y"))
+        return scatterplot(query.get("x"), query.get("y"), "title")
     else:
         tangelo.http_status(400, "Illegal plot type")
         return {"error": "Illegal plot type: %s" % (plot_type)}

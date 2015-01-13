@@ -15,7 +15,7 @@
       "range": "height",
       "domain": {
           "data": "air/star dates",
-          "field": "data.y"
+          "field": "data.stardate"
       }
     },
     {
@@ -26,7 +26,7 @@
       "nice": "year",
       "domain": {
           "data": "air/star dates",
-          "field": "data.x"
+          "field": "data.airdate"
       }
     }
   ],
@@ -40,8 +40,8 @@
       "from": {"data": "air/star dates"},
       "properties": {
         "enter": {
-          "x": {"scale": "x", "field": "data.x"},
-          "y": {"scale": "y", "field": "data.y"},
+          "x": {"scale": "x", "field": "data.airdate"},
+          "y": {"scale": "y", "field": "data.stardate"},
           "radius": {"value": 5},
           "stroke": {"value": "black"},
           "fill": {"value": "steelblue"}
