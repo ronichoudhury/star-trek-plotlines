@@ -5,7 +5,7 @@
   "data": [
     {
       "name": "air/star dates",
-      "url": "air-stardates.json"
+      "url": "episodes/scatter?x=airdate&y=stardate"
     }
   ],
   "scales": [
@@ -13,7 +13,10 @@
       "name": "y",
       "type": "linear",
       "range": "height",
-      "domain": {"data": "air/star dates", "field": "data.y"}
+      "domain": {
+          "data": "air/star dates",
+          "field": "data.y"
+      }
     },
     {
       "name": "x",
@@ -21,11 +24,14 @@
       "range": "width",
       "round": true,
       "nice": "year",
-      "domain": {"data": "air/star dates", "field": ["data.x"]}
+      "domain": {
+          "data": "air/star dates",
+          "field": "data.x"
+      }
     }
   ],
   "axes": [
-    {"type": "x", "scale": "x"}
+    {"type": "x", "scale": "x"},
     {"type": "y", "scale": "y"}
   ],
   "marks": [
@@ -37,7 +43,7 @@
           "x": {"scale": "x", "field": "data.x"},
           "y": {"scale": "y", "field": "data.y"},
           "radius": {"value": 5},
-          "stroke": {"value": "black"}
+          "stroke": {"value": "black"},
           "fill": {"value": "steelblue"}
         }
       }
