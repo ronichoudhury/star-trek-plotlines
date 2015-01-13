@@ -2,6 +2,7 @@ window.onload = function () {
     function scatter(cfg) {
         var spec,
             seasons,
+            url,
             x,
             y;
 
@@ -65,11 +66,12 @@ window.onload = function () {
 
         cfg = cfg || {};
 
-        spec.data[0].url = "episodes/scatter?x=" + cfg.x + "&y=" + cfg.y;
+        url = "episodes/scatter?x=" + cfg.x + "&y=" + cfg.y;
         if (cfg.seasons) {
-            spec.data.url += "&seasons=" + JSON.stringify(cfg.seasons);
+            url += "&seasons=" + cfg.seasons;
         }
 
+        spec.data[0].url = url;
         spec.scales[0].domain.field = "data." + cfg.y;
         spec.scales[1].domain.field = "data." + cfg.x;
         spec.marks[0].properties.enter.x.field = "data." + cfg.x;
@@ -96,6 +98,7 @@ window.onload = function () {
 
     parse(scatter({
         x: "airdate",
-        y: "stardate"
+        y: "stardate",
+        seasons: tangelo.queryArguments().seasons
     }));
 };
