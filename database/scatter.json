@@ -1,6 +1,6 @@
 {
   "name": "scatterplot",
-  "width": 400,
+  "width": 1200,
   "height": 400,
   "data": [
     {
@@ -16,14 +16,15 @@
       "domain": {
           "data": "air/star dates",
           "field": "data.stardate"
-      }
+      },
+      "zero": false
     },
     {
       "name": "x",
       "type": "time",
       "range": "width",
       "round": true,
-      "nice": "year",
+      "nice": "month",
       "domain": {
           "data": "air/star dates",
           "field": "data.airdate"
@@ -42,9 +43,13 @@
         "enter": {
           "x": {"scale": "x", "field": "data.airdate"},
           "y": {"scale": "y", "field": "data.stardate"},
-          "radius": {"value": 5},
+          "size": {"value": 50},
           "stroke": {"value": "black"},
           "fill": {"value": "steelblue"}
+        },
+        "hover": {
+            "size": {"value": 100},
+            "fill": {"value": "firebrick"}
         }
       }
     }
