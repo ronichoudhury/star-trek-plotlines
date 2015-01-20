@@ -19,7 +19,7 @@ window.onload = function () {
             "scales": [
                 {
                     "name": "y",
-                    "type": "linear",
+                    "type": null,
                     "range": "height",
                     "domain": {
                         "data": "air/star dates",
@@ -29,7 +29,7 @@ window.onload = function () {
                 },
                 {
                     "name": "x",
-                    "type": "time",
+                    "type": null,
                     "range": "width",
                     "round": true,
                     "nice": "month",
@@ -73,7 +73,9 @@ window.onload = function () {
 
         spec.data[0].url = url;
         spec.scales[0].domain.field = "data." + cfg.y;
+        spec.scales[0].type = cfg.yscaleType || "linear";
         spec.scales[1].domain.field = "data." + cfg.x;
+        spec.scales[1].type = cfg.xscaleType || "linear";
         spec.marks[0].properties.enter.x.field = "data." + cfg.x;
         spec.marks[0].properties.enter.y.field = "data." + cfg.y;
 
@@ -96,9 +98,23 @@ window.onload = function () {
         });
     }
 
-    parse(scatter({
-        x: "airdate",
-        y: "stardate",
-        seasons: tangelo.queryArguments().seasons
-    }));
+    chartType = tangelo.queryArguments().chart || "airdate";
+    seasons = tangelo.queryArguments().seasons;
+
+    if (chartType === "airdate") {
+        config = {
+            x: "airdate",
+            xscaleType: "time",
+            y: "stardate",
+            seasons: seasons
+        };
+    } else if (chartType === "episode") {
+        config = {
+            x: "id",
+            y: "stardate",
+            seasons: seasons
+        };
+    }
+
+    parse(scatter(config));
 };
