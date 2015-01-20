@@ -1,4 +1,4 @@
 *.swo
 *.swp
 *.pyc
-database/stplots.db
+tangelo/stplots.db

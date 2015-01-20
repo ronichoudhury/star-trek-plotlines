@@ -18,7 +18,5 @@ fi
 me=`readlink -f ${0}`
 here=`dirname ${me}`
 
-#PYTHONPATH=${PYTHONPATH}:${here}/database
-
-cd ${here}/database
+cd ${here}/tangelo
 ${TANGELO} --hostname ${hostname} --port ${port} --root .
