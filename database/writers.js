@@ -75,6 +75,7 @@ $(function () {
                     properties: {
                         enter: {
                             x: {scale: "x", field: "data." + cfg.label},
+                            dx: {value: 5},
                             y: {value: height + 5},
                             angle: {value: 45},
                             fill: {value: "black"},
