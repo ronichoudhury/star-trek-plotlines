@@ -7,57 +7,71 @@ window.onload = function () {
             y;
 
         spec = {
-            "name": "scatterplot",
-            "width": 1200,
-            "height": 400,
-            "data": [
+            name: "scatterplot",
+            width: 1200,
+            height: 400,
+            data: [
                 {
-                    "name": "air/star dates",
-                    "url": null
+                    name: "air/star dates",
+                    url: null
                 }
             ],
-            "scales": [
+            scales: [
                 {
-                    "name": "y",
-                    "type": null,
-                    "range": "height",
-                    "domain": {
-                        "data": "air/star dates",
-                        "field": "data.stardate"
+                    name: "y",
+                    type: null,
+                    range: "height",
+                    domain: {
+                        data: "air/star dates",
+                        field: "data.stardate"
                     },
-                    "zero": false
+                    zero: false
                 },
                 {
-                    "name": "x",
-                    "type": null,
-                    "range": "width",
-                    "round": true,
-                    "nice": "month",
-                    "domain": {
-                        "data": "air/star dates",
-                        "field": "data.airdate"
+                    name: "x",
+                    type: null,
+                    range: "width",
+                    round: true,
+                    nice: "month",
+                    domain: {
+                        data: "air/star dates",
+                        field: "data.airdate"
                     }
                 }
             ],
-            "axes": [
-                {"type": "x", "scale": "x"},
-                {"type": "y", "scale": "y"}
-            ],
-            "marks": [
+            axes: [
                 {
-                    "type": "symbol",
-                    "from": {"data": "air/star dates"},
-                    "properties": {
-                        "enter": {
-                            "x": {"scale": "x", "field": "data.airdate"},
-                            "y": {"scale": "y", "field": "data.stardate"},
-                            "size": {"value": 50},
-                            "stroke": {"value": "black"},
-                            "fill": {"value": "steelblue"}
+                    type: "x",
+                    scale: "x"
+                },
+                {
+                    type: "y",
+                    scale: "y"
+                }
+            ],
+            marks: [
+                {
+                    type: "symbol",
+                    from: {
+                        data: "air/star dates"
+                    },
+                    properties: {
+                        enter: {
+                            x: {
+                                scale: "x",
+                                field: "data.airdate"
+                            },
+                            y: {
+                                scale: "y",
+                                field: "data.stardate"
+                            },
+                            size: {value: 50},
+                            stroke: {value: "black"},
+                            fill: {value: "steelblue"}
                         },
-                        "hover": {
-                            "size": {"value": 100},
-                            "fill": {"value": "firebrick"}
+                        hover: {
+                            size: {value: 100},
+                            fill: {value: "firebrick"}
                         }
                     }
                 }
@@ -83,7 +97,7 @@ window.onload = function () {
     }
 
     function parse(spec) {
-        vg.parse.spec(spec, function(chart) {
+        vg.parse.spec(spec, function (chart) {
             var view = chart({el: "#vis"})
                 .on("mouseover", function (evt, item) {
                     d3.select("#info")
