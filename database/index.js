@@ -128,6 +128,9 @@ window.onload = function () {
             y: "stardate",
             seasons: seasons
         };
+    } else {
+        d3.select("#vis")
+            .html("<b>Error</b>: Unknown chart type '" + chartType + "'.");
     }
 
     parse(scatter(config));
